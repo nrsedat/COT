@@ -1,0 +1,69 @@
+.progress-bar.passed {
+    background: repeating-linear-gradient(
+    -55deg,
+    #1bb392,
+    #1bb392 10px,
+    #1fc2a7 10px,
+    #1fc2a7 20px
+  );
+}
+.progress-bar.running {
+    background: repeating-linear-gradient(
+    -55deg,
+    #1d84c4,
+    #1d84c4 10px,
+    #239ecf 10px,
+    #239ecf 20px
+  );
+}
+
+.progress-bar.failed {
+    background: repeating-linear-gradient(
+    -55deg,
+    #eb5463,
+    #eb5463 10px,
+    #f06779 10px,
+    #f06779 20px
+  );
+}
+.progress {
+  height: 5px;
+  position: relative;
+  top: 10px;
+  left: -2px;
+}
+.status {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  position: absolute;
+  left: -15px;
+  top: -5px;
+  z-index: 2;
+}
+
+.build
+{
+  display: inline-block;
+  width: 5px;
+  height: 30px;
+  border-radius: 0%;
+  position: absolute;
+  left: -15px;
+  top: -5px;
+  z-index: 2;
+}
+
+.status.pending {
+  background-color: #f7ab59;
+}
+.status.passed {
+  background-color: #1bb392;
+}
+.status.running {
+  background-color: #1d84c4;
+}
+.status.failed {
+  background-color: #eb5463;
+}
