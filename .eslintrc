@@ -7,6 +7,9 @@
     "jasmine": true,
     "node": true
   },
+  "globals": {
+    "angular": true
+  },
   "rules": {
     "brace-style": 2,
     "camelcase": 2,
@@ -37,7 +40,7 @@
     "no-invalid-regexp": 2,
     "no-mixed-spaces-and-tabs": 2,
     "no-redeclare": 2,
-    "no-reserved-keys": 2,
+    "quote-props": [2, "as-needed"],
     "no-self-compare": 1,
     "no-shadow-restricted-names": 2,
     "no-trailing-spaces": 2,

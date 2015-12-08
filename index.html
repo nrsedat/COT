@@ -8,36 +8,33 @@
 </head>
 <body ng-controller="appCtrl">
   <div class="panel-group" id="process-list" role="tablist" aria-multiselectable="true">
-    <div ng-repeat="item in list" class="panel ">
+    <div ng-repeat="item in list" class="{{'process panel ' + item.status}}">
       <div class="container" role="tab" id="{{'heading' + $index}}" role="button" data-toggle="collapse" data-parent="#process-list" href="{{'#build-detail' + $index}}">
         <span class="col-sm-1">{{item.changelist}}</span>
         <span class="col-sm-1">{{item.owner}}</span>
         <span class="col-sm-2">{{item.startTime}}</span>
-        <span class="col-sm-2">
-          <span class="{{'status ' + item.status}}"></span>
-          <div class="progress">
-            <div class="{{'progress-bar progress-bar-striped ' + item.status}}"role="progressbar" aria-valuenow="{{item.build.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.build.progress}}%">
-              <span class="sr-only">{{item.build.progress}}% Complete (success)</span>
+        <div class="col-sm-6">
+        <div class="process-progress">
+          <div class="process-progress-bar">
+            <div class="milestone build"></div>
+            <div class="milestone unit"></div>
+            <div class="milestone functional"></div>
+          </div>
+          <div class="{{'process-progress-status ' + item.status}}" style="width: {{item.totalProgress}}%"></div>
+          <div class="{{'process-progress-current ' + item.status}}">
+            <div class="milestone build" ng-class="{active: item.build}">
+              <span class="glyphicon" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}" aria-hidden="true"></span>
+            </div>
+            <div class="milestone unit" ng-class="{active: item.unit}">
+              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}"></span>
+            </div>
+            <div class="milestone functional" ng-class="{active: item.functional}">
+              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}"></span>
             </div>
           </div>
-        </span>
-        <span class="col-sm-2">
-          <span class="{{'status ' + item.status}}"></span>
-          <div class="progress">
-            <div class="{{'progress-bar progress-bar-striped ' + item.status}}" role="progressbar" aria-valuenow="{{item.unit.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.unit.progress}}%">
-              <span class="sr-only">{{item.unit.progress}}% Complete (success)</span>
-            </div>
-          </div>
-        </span>
-        <span class="col-sm-2">
-          <span class="{{'status ' + item.status}}"></span>
-          <div class="progress">
-            <div class="{{'progress-bar progress-bar-striped ' + item.status}}" role="progressbar" aria-valuenow="{{item.functional.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{item.functional.progress}}%">
-              <span class="sr-only">{{item.functional.progress}}% Complete (success)</span>
-            </div>
-          </div>
-        </span>
-        <span class="col-sm-2">{{item.status}}</span>
+        </div>
+        </div>
+        <span class="col-sm-2 status">{{item.status}}</span>
       </div>
 
       <div id="{{'build-detail' + $index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
