@@ -5,11 +5,25 @@
   <title>CI</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="app.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.js"></script>
 </head>
 <body ng-controller="appCtrl">
-  <div class="panel-group" id="process-list" role="tablist" aria-multiselectable="true">
-    <div ng-repeat="item in list" class="{{'process panel ' + item.status}}">
-      <div class="container" role="tab" id="{{'heading' + $index}}" role="button" data-toggle="collapse" data-parent="#process-list" href="{{'#build-detail' + $index}}">
+  <div class="panel-group  container" id="process-list" role="tablist" aria-multiselectable="true">
+    <div class="heading panel">
+      <span class="col-sm-1">changelist</span>
+      <span class="col-sm-1">owner</span>
+      <span class="col-sm-2">Time started</span>
+      <div class="col-sm-6">
+      <div class="process-progress">
+        <span class="build">build</span>
+        <span class="unit"> unit test</span>
+        <span class="functional">functional test</span>
+      </div>
+    </div>
+      <span class="col-sm-2 header-status">status</span>
+    </div>
+    <div ng-repeat="item in list" class="{{'collapsed row process panel ' + item.status}}" role="tab" id="{{'heading' + $index}}" data-toggle="collapse" data-parent="#process-list" href="{{'#build-detail' + $index}}">
+      <div class="process-row">
         <span class="col-sm-1">{{item.changelist}}</span>
         <span class="col-sm-1">{{item.owner}}</span>
         <span class="col-sm-2">{{item.startTime}}</span>
@@ -23,23 +37,78 @@
           <div class="{{'process-progress-status ' + item.status}}" style="width: {{item.totalProgress}}%"></div>
           <div class="{{'process-progress-current ' + item.status}}">
             <div class="milestone build" ng-class="{active: item.build}">
-              <span class="glyphicon" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}" aria-hidden="true"></span>
+              <span class="glyphicon" ng-class="{'glyphicon-refresh': item.build == 'running', 'glyphicon-ok': item.build == 'passed', 'glyphicon-option-horizontal': item.build == 'pending', 'glyphicon-option-warning': item.build == 'failed'}" aria-hidden="true"></span>
             </div>
             <div class="milestone unit" ng-class="{active: item.unit}">
-              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}"></span>
+              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.unit == 'running', 'glyphicon-ok': item.unit == 'passed', 'glyphicon-option-horizontal': item.unit == 'pending', 'glyphicon-option-warning': item.unit == 'failed'}"></span>
             </div>
             <div class="milestone functional" ng-class="{active: item.functional}">
-              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-option-warning': item.status == 'failed'}"></span>
+              <span class="glyphicon" aria-hidden="true" ng-class="{'glyphicon-refresh': item.functional == 'running', 'glyphicon-ok': item.functional == 'passed', 'glyphicon-option-horizontal': item.functional == 'pending', 'glyphicon-option-warning': item.functional == 'failed'}"></span>
             </div>
           </div>
         </div>
         </div>
-        <span class="col-sm-2 status">{{item.status}}</span>
       </div>
-
-      <div id="{{'build-detail' + $index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
+      <span class="col-sm-2 status">
+        <span class="glyphicon" ng-class="{'glyphicon-refresh': item.status == 'running', 'glyphicon-ok-circle': item.status == 'passed', 'glyphicon-option-horizontal': item.status == 'pending', 'glyphicon-remove-circle': item.status == 'failed'}" aria-hidden="true"></span>
+        <span class="caption">build</span>
+        <br/>
+        {{item.status}}
+      </span>
+      <div id="{{'build-detail' + $index}}" class="col-sm-10 panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
         <div class="panel-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          <div class="build-detail col-sm-4">
+            <div class="col-sm-4">
+              <div>Build at</div>
+              <div>3:14am</div>
+            </div>
+            <div class="col-sm-2">
+              <div class="folder">
+                <span class="glyphicon glyphicon-ok"></span>
+              </div>
+              <a>debug</a>
+            </div>
+            <div class="col-sm-2">
+              <div class="folder">
+                <span class="glyphicon glyphicon-ok"></span>
+              </div>
+              <a>release</a>
+            </div>
+            <div class="col-sm-4">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </div>
+          </div>
+          <div class="unit-detail col-sm-4">
+            <div class="col-sm-4">
+              <div>Unit test</div>
+              <div>{{Math.round(item.details.unit.success/(item.details.unit.success + item.details.unit.failure)*100)}}%</div>
+            </div>
+            <div class="col-sm-4">
+              <pie-chart data="item.details.unit"/>
+            </div>
+            <div class="col-sm-2">
+              <div>{{item.details.unit.success}}</div>
+              <div>{{item.details.unit.failure}}</div>
+              <div>4:30</div>
+            </div>
+            <div class="col-sm-2">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </div>
+          </div>
+          <div class="functional-detail col-sm-4">
+            <div class="col-sm-6">
+              <div>Functional test</div>
+              <div>{{Math.round(item.details.functional.success/(item.details.functional.success + item.details.functional.failure)*100)}}%</div>
+            </div>
+            <div class="col-sm-4">
+              <pie-chart data="item.details.functional"/>
+            </div>
+            <div class="col-sm-2">
+              <div>{{item.details.functional.success}}</div>
+              <div>{{item.details.functional.failure}}</div>
+              <div>4:30</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

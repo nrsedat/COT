@@ -16,7 +16,7 @@ gulp.task('compass', function () {
       image: 'app/assets/images'
     }))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('app/assets/temp'));
+    .pipe(gulp.dest('build/css'));
 });
 
 gulp.task('sass:watch', function (){
