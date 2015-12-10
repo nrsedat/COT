@@ -1,26 +1,20 @@
 'use strict';
 
 var gulp = require('gulp');
-var compass = require('gulp-compass');
-var minifyCSS = require('gulp-minify-css');
 
-var paths = {
-  sass: ['./app/sass/*.scss', './app/sass/**/*.scss']
-};
+require('./gulp/style');
+require('./gulp/app');
 
-gulp.task('compass', function () {
-  gulp.src(paths.sass)
-    .pipe(compass({
-      css: 'app/assets/css',
-      sass: 'app/sass',
-      image: 'app/assets/images'
-    }))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('build/css'));
+gulp.task('build', ['style', 'app']);
+
+gulp.task('watch:style', function (){
+  gulp.watch('src/assets/**/*.scss', ['style']);
 });
 
-gulp.task('sass:watch', function (){
-  gulp.watch(paths.sass, ['compass']);
+gulp.task('watch:app', function (){
+  gulp.watch('src/app/*.js', ['app']);
 });
 
-gulp.task('default', ['compass', 'sass:watch']);
+gulp.task('watch', ['watch:style', 'watch:app']);
+
+gulp.task('default', ['build', 'watch']);

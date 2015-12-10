@@ -1,5 +1,9 @@
 'use strict';
 
+require('jquery');
+require('bootstrap');
+
+var angular = require('angular');
 var app = angular.module('ciApp', []);
 
 app.controller('appCtrl', ['$scope', function ($scope){
