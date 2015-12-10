@@ -24,6 +24,10 @@ gulp.task('app', function () {
     jquery: {
       path: 'src/lib/jquery.js',
       exports: 'jquery'
+    },
+    Chart: {
+      path: 'src/lib/chart.js',
+      exports: 'Chart'
     }
   }
 		}))

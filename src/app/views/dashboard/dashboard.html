@@ -16,7 +16,12 @@
     <div class="process-row">
       <span class="col-sm-1">{{item.changelist}}</span>
       <span class="col-sm-1">{{item.owner}}</span>
-      <span class="col-sm-2">{{item.startTime}}</span>
+      <span class="col-sm-2 timestamp">
+        {{item.startTime | date : 'MM/dd/yyyy' }}
+        &nbsp;
+        <span class="glyphicon glyphicon-time"></span>
+        {{item.startTime | date : 'h:mm a' }}
+      </span>
       <div class="col-sm-6">
       <div class="process-progress">
         <div class="process-progress-bar">
@@ -47,60 +52,14 @@
     </span>
     <div id="{{'build-detail' + $index}}" class="col-sm-10 panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
       <div class="panel-body">
-        <div class="build-detail col-sm-4">
-          <div class="col-sm-4">
-            <span>Build at</span>
-            <span class="{{'check glyphicon ' + item.build}}" ng-class="{'glyphicon-refresh': item.build == 'running', 'glyphicon-ok': item.build == 'passed', 'glyphicon-option-horizontal': item.build == 'pending', 'glyphicon-remove': item.build == 'failed'}" aria-hidden="true"></span>
-            <span>3:14am</span>
-          </div>
-          <div class="col-sm-2">
-            <div class="folder">
-              <span class="glyphicon glyphicon-ok"></span>
-            </div>
-            <a>debug</a>
-          </div>
-          <div class="col-sm-2">
-            <div class="folder">
-              <span class="glyphicon glyphicon-ok"></span>
-            </div>
-            <a>release</a>
-          </div>
-          <div class="col-sm-4">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </div>
+        <div class="{{'build-detail col-sm-4 ' + item.status}}">
+          <build-details status="item.build" start-time="item.startTime" />
         </div>
         <div class="unit-detail col-sm-4">
-          <div class="col-sm-4">
-            <div>Unit test</div>
-            <span class="{{'check glyphicon ' + item.unit}}" ng-class="{'glyphicon-refresh': item.unit == 'running', 'glyphicon-ok': item.unit == 'passed', 'glyphicon-option-horizontal': item.unit == 'pending', 'glyphicon-remove': item.unit == 'failed', 'glyphicon-minus': item.unit=='false'}" aria-hidden="true"></span>
-            <div>{{Math.round(item.details.unit.success/(item.details.unit.success + item.details.unit.failure)*100)}}%</div>
-          </div>
-          <div class="col-sm-4">
-            <pie-chart data="item.details.unit"/>
-          </div>
-          <div class="col-sm-2">
-            <div>{{item.details.unit.success}}</div>
-            <div>{{item.details.unit.failure}}</div>
-            <div>4:30</div>
-          </div>
-          <div class="col-sm-2">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </div>
+          <process-details label="Unit" status="item.unit" details="item.details.unit" />
         </div>
         <div class="functional-detail col-sm-4">
-          <div class="col-sm-6">
-            <div>Functional test</div>
-            <span class="{{'check glyphicon ' + item.build}}" ng-class="{'glyphicon-refresh': item.functional == 'running', 'glyphicon-ok': item.functional == 'passed', 'glyphicon-option-horizontal': item.functional == 'pending', 'glyphicon-remove': item.functional == 'failed','glyphicon-minus': item.functional=='false'}" aria-hidden="true"></span>
-            <div>{{Math.round(item.details.functional.success/(item.details.functional.success + item.details.functional.failure)*100)}}%</div>
-          </div>
-          <div class="col-sm-4">
-            <pie-chart data="item.details.functional"/>
-          </div>
-          <div class="col-sm-2">
-            <div>{{item.details.functional.success}}</div>
-            <div>{{item.details.functional.failure}}</div>
-            <div>4:30</div>
-          </div>
+          <process-details label="Functional" status="item.functional" details="item.details.functional" />
         </div>
       </div>
     </div>

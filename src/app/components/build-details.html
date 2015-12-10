@@ -1,0 +1,26 @@
+<div class="col-sm-4 timestamp">
+  <span class="build-label">Build
+    <span class="{{'check glyphicon ' + status}}" ng-class="{'glyphicon-refresh': status == 'running', 'glyphicon-ok': status == 'passed', 'glyphicon-option-horizontal': status == 'pending', 'glyphicon-remove': status == 'failed'}" aria-hidden="true"></span>
+  </span>
+  <span class="time">
+    <span class="glyphicon glyphicon-time"></span>
+    {{startTime | date : 'h:mm a' }}
+  </span>
+</div>
+<div class="col-sm-2">
+  <div class="folder">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <a>debug</a>
+</div>
+<div class="col-sm-2">
+  <div ng-if="status !== 'pending'">
+    <div class="folder">
+      <span class="glyphicon glyphicon-ok"></span>
+    </div>
+    <a>release</a>
+</div>
+</div>
+<div class="col-sm-4 right-arrow">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+</div>

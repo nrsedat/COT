@@ -1,0 +1,29 @@
+<div class="run-details">
+  <div >{{label}} Test
+    <span ng-if="status !== false" class="{{'check glyphicon ' + status}}" ng-class="{'glyphicon-refresh': status == 'running', 'glyphicon-ok': status == 'passed', 'glyphicon-option-horizontal': status == 'pending', 'glyphicon-remove': status == 'failed'}" aria-hidden="true"></span>
+    <span  ng-if="status== false" class="glyphicon-minus"></span></div>
+  <div ng-if="status == false">
+    <b class="percentage">0%</b>
+    Status: <b class="text">Can't Run</b>
+  </div>
+  <div ng-if="status != false">
+    <div>{{Math.round(details.success/(details.success + details.failure)*100)}}%</div>
+  </div>
+</div>
+<div ng-if="status != false" class="chart">
+  <pie-chart data="details"/>
+</div>
+<div ng-if="status != false" class="chart-legends">
+  <div class="legend-success"><span></span>{{details.success}}</div>
+  <div class="legend-failure"><span></span>{{details.failure}}</div>
+  <div>
+    <span class="time">
+      <span class="glyphicon glyphicon-time">
+        {{details.duration}}
+      </span>
+    </span>
+  </div>
+</div>
+<div class="right-arrow" ng-if="label == 'Unit'">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+</div>

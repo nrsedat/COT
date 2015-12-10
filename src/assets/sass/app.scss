@@ -7,7 +7,11 @@
 	width: 1176px;
 	margin: 50px auto;
 	font-family: $font_0, $font_1, $font_2;
+  .panel-body {
+    padding-top: 35px;
+  }
 	.panel {
+    color: $theme-copy-color;
 		padding: 13px;
 		border-color: $color_mercury_approx;
 		border-left-width: 8px;
@@ -282,7 +286,8 @@
 .check.glyphicon {
 	color: $white;
 	font-size: 10px;
-  @include border-radius(100%);
+  @include border-radius(0);
+  padding: 2px;
 	&.failed {
 		background-color: $color_mandy_approx;
 	}
@@ -298,4 +303,121 @@
 	&.false {
 		background-color: $color_mandy_approx;
 	}
+}
+
+.build-detail {
+  .right-arrow {
+    text-align: right;
+    top: 8px;
+  }
+  .build-label {
+    text-transform: capitalize;
+  }
+
+  &.failed {
+    color: $color_mandy_approx;
+    .glyphicon {
+        @include border-radius(100%);
+    }
+  }
+  &.passed {
+    color: $color_mountain_meadow_approx;
+  }
+  &.pending {
+    color: $color_sandy_brown_approx;
+  }
+  &.running {
+    color: $color_curious_blue_approx;
+  }
+}
+
+.chart-legends {
+  & > div {
+    position: relative;
+    padding-left: 2px;
+    span {
+      display: inline-block;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: -8px;
+      top: 6px;
+    }
+  }
+  .legend-failure span{
+    background-color: #f7ab59;
+  }
+  .legend-success span{
+    background-color: #1bb392;
+  }
+  .time {
+    .glyphicon {
+      width: 54px;
+      left: 0;
+    }
+    .glyphicon-time:before {
+      margin-right: -10px;
+    }
+  }
+}
+
+.glyphicon-chevron-right,
+.time {
+  color: $theme-copy-color;
+}
+.time {
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
+.timestamp {
+  text-transform: lowercase;
+  font-size: 13px;
+}
+
+.glyphicon-minus:before {
+  border: 1px solid #eb5463;
+  border-radius: 100%;
+  padding: 0 1px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #fff;
+  background: #eb5463;
+}
+
+.chart-legends {
+  position: absolute;
+  right: 14%;
+  top: 0;
+}
+
+.run-details {
+  & + .chart {
+    position: absolute;
+    right: 32%;
+    top: 0;
+  }
+
+  .glyphicon-minus {
+    margin-left: 5px;
+  }
+  b {
+    font-size: 20px;
+    font-weight: 400;
+
+    &.percentage {
+      margin-right: 5px;
+    }
+
+    &.text {
+      color: #eb5463;
+      font-size: 18px;
+    }
+  }
+}
+
+.right-arrow {
+  position: absolute;
+  right: 20px;
+  top: 10px;
 }
