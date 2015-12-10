@@ -8,8 +8,8 @@ var processListData = require('./data/process-list');
 
 app.use(express.static('build'));
 app.use(express.static('src/app'));
-app.use(express.static('css'));
-app.use(express.static('js'));
+app.use(express.static('src/lib'));
+app.use(express.static('src/assets'));
 
 
 app.get('/', function (req, res) {
