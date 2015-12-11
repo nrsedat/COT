@@ -15,7 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.
       when('/', {
         templateUrl: 'views/dashboard/dashboard.html',
-        controller: 'dashboardCtrl'
+        controller: 'DashboardCtrl'
       }).
       otherwise({
         redirectTo: '/'

@@ -3,7 +3,7 @@
 var angular = require('angular');
 var appViews = angular.module('app.views', []);
 
-appViews.controller('dashboardCtrl', ['$scope', '$http', function ($scope, $http){
+appViews.controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http){
   $scope.Math = window.Math;
   $http({
     method: 'GET',

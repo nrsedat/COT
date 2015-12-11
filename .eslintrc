@@ -9,7 +9,8 @@
   },
   "globals": {
     "angular": true,
-    "Chart": true
+    "Chart": true,
+    "inject": true
   },
   "rules": {
     "brace-style": 2,
