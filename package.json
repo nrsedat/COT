@@ -4,7 +4,7 @@
   "description": "CI - Crossover application test",
   "main": "index.js",
   "scripts": {
-    "test": "gulp build && karma start test/karma.conf.js",
+    "test": "gulp app && karma start test/karma.conf.js",
     "start": "gulp"
   },
   "repository": {
