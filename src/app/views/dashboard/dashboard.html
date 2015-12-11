@@ -50,7 +50,7 @@
       <br/>
       {{item.status}}
     </span>
-    <div id="{{'build-detail' + $index}}" class="col-sm-10 panel-collapse collapse" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
+    <div id="{{'build-detail' + $index}}" class="col-sm-10 panel-collapse collapse build-detail-main" role="tabpanel" aria-labelledby="{{'heading' + $index}}">
       <div class="panel-body">
         <div class="{{'build-detail col-sm-4 ' + item.status}}">
           <build-details status="item.build" start-time="item.startTime" />

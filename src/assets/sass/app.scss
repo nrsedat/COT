@@ -10,6 +10,11 @@
   .panel-body {
     padding-top: 35px;
   }
+  .build-detail-main {
+    padding: 0;
+    border-top: 1px solid $gray-1;
+    margin-top: 15px;
+  }
 	.panel {
     color: $theme-copy-color;
 		padding: 13px;
@@ -17,6 +22,8 @@
 		border-left-width: 8px;
 		border-left-style: solid;
     @include border-radius(0);
+    padding-left: 0;
+    padding-right: 0;
 		margin: 0;
 		height: 173px;
 		position: relative;

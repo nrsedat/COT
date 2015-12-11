@@ -2,11 +2,10 @@
 
 var gulp = require('gulp');
 var browserify = require('gulp-browserify');
-var path = require('path');
 
 gulp.task('app', function () {
 	//single entry point to browserify
-  gulp.src(path.resolve(__dirname, '../src/app/app.js'))
+  gulp.src('src/app/app.js')
 		.pipe(browserify({
   shim: {
     angular: {
@@ -31,5 +30,5 @@ gulp.task('app', function () {
     }
   }
 		}))
-    .pipe(gulp.dest(path.resolve(__dirname, '../build/js')));
+    .pipe(gulp.dest('build/js'));
 });

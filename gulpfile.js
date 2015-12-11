@@ -4,6 +4,7 @@ var gulp = require('gulp');
 
 require('./gulp/style');
 require('./gulp/app');
+require('./gulp/serve');
 
 gulp.task('build', ['style', 'app']);
 
@@ -17,4 +18,4 @@ gulp.task('watch:app', function (){
 
 gulp.task('watch', ['watch:style', 'watch:app']);
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'serve', 'watch']);
