@@ -1,0 +1,424 @@
+#process-list {
+	margin: 50px auto;
+	font-family: $font_0, $font_1, $font_2;
+  .panel-body {
+    padding-top: 35px;
+  }
+  .build-detail-main {
+    padding: 0;
+    border-top: 1px solid $gray-1;
+    margin-top: 15px;
+  }
+	.panel {
+    color: $theme-copy-color;
+		padding: 13px;
+		border-color: $color_mercury_approx;
+		border-left-width: 8px;
+		border-left-style: solid;
+    @include border-radius(0);
+    padding-left: 0;
+    padding-right: 0;
+		margin: 0;
+		height: 173px;
+		position: relative;
+		border-top-width: 4px;
+		&.collapsed {
+			height: auto;
+			border-top: none;
+			&.failed {
+				border-left-color: $color_mandy_approx;
+			}
+			&.pending {
+				border-left-color: $color_sandy_brown_approx;
+			}
+			&.running {
+				border-left-color: $color_curious_blue_approx;
+			}
+			&.passed {
+				border-left-color: $color_mountain_meadow_approx;
+			}
+		}
+		&.pending {
+			border-left-color: $color_celeste_approx;
+			border-top-color: $color_sandy_brown_approx;
+		}
+		&.running {
+			border-left-color: $color_celeste_approx;
+			border-top-color: $color_curious_blue_approx;
+		}
+		&.passed {
+			border-left-color: $color_celeste_approx;
+			border-top-color: $color_mountain_meadow_approx;
+		}
+		&.failed {
+			border-left-color: $color_celeste_approx;
+			border-top-color: $color_mandy_approx;
+		}
+	}
+	.heading.panel {
+		padding: 26px 13px;
+		height: auto;
+		line-height: 0;
+		border-top-width: 1px;
+		border-top-style: solid;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+}
+.process {
+	.process-progress {
+		position: relative;
+		padding: 10px 0;
+		padding-left: 20px;
+		width: 85%;
+		margin: 0 auto;
+	}
+	.status {
+		font-weight: bold;
+		text-transform: capitalize;
+		padding-left: 5%;
+	}
+}
+.process-progress-bar {
+	width: 100%;
+	background: $color_mercury_approx;
+	height: 10px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 30px;
+}
+.milestone {
+	width: 35px;
+	height: 35px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 100%;
+	position: absolute;
+	background: $color_mercury_approx;
+	top: -4px;
+	&.build {
+		left: 0;
+	}
+	&.unit {
+		left: 50%;
+	}
+	&.functional {
+		right: 0;
+	}
+}
+.process-progress-status {
+	display: inline-block;
+	max-width: 92% !important;
+	width: 0;
+	height: 5px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 5px;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	&.running {
+		background: repeating-linear-gradient(-55deg,$color_curious_blue_approx,$color_curious_blue_approx 10px,$color_curious_blue_approx 10px,$color_curious_blue_approx 20px);
+	}
+	&.passed {
+		background: repeating-linear-gradient(-55deg,$color_mountain_meadow_approx,$color_mountain_meadow_approx 10px,$color_shamrock_approx 10px,$color_shamrock_approx 20px);
+	}
+	&.failed {
+		background: repeating-linear-gradient(-55deg,$color_mandy_approx,$color_mandy_approx 10px,$color_brink_pink_approx 10px,$color_brink_pink_approx 20px);
+	}
+}
+.process-progress-current {
+	.milestone {
+		width: 25px;
+		height: 25px;
+		text-align: center;
+		margin: auto;
+		background: $color_celeste_approx;
+		position: absolute;
+		top: -3px;
+		bottom: 0;
+		display: none;
+		.glyphicon {
+			top: 5px;
+			color: $white;
+		}
+		&.active {
+			display: inline-block;
+		}
+		&.build {
+			left: 5px;
+		}
+		&.unit {
+			left: 0;
+			right: -35px;
+		}
+		&.functional {
+			right: 5px;
+			left: auto;
+		}
+	}
+	&.pending .milestone {
+		background: $color_sandy_brown_approx;
+	}
+	&.running .milestone {
+		background: $color_curious_blue_approx;
+	}
+	&.passed .milestone {
+		background: $color_mountain_meadow_approx;
+	}
+	&.failed .milestone {
+		background: $color_mandy_approx;
+	}
+}
+.glyphicon-option-horizontal {
+	border: 2px solid $white;
+  @include border-radius(100%);
+	font-size: 12px;
+	top: 4px !important;
+}
+.status {
+	position: relative;
+	font-size: 16px;
+	height: 174px;
+	position: absolute;
+	right: 0;
+	top: -4px;
+	background: $alabaster;
+	border-left: 2px solid $color_celeste_approx;
+	border-top: 2px solid $color_celeste_approx;
+	.glyphicon-option-horizontal {
+		border-color: $color_sandy_brown_approx;
+	}
+	.caption {
+		display: inline-block;
+	}
+	br {
+		display: inline-block;
+	}
+	.glyphicon {
+		top: 2px;
+		margin-top: 50%;
+	}
+}
+.folder {
+	text-align: center;
+	color: $color_mountain_meadow_approx;
+	width: 30px;
+	height: 24px;
+	border: 2px solid $color_mountain_meadow_approx;
+  @include border-radius(4px);
+  @include border-top-left-radius(0);
+	position: relative;
+	&:before {
+		content: "";
+		display: block;
+		width: 15px;
+		height: 6px;
+		border: 2px solid $color_mountain_meadow_approx;
+		position: absolute;
+		top: -6px;
+		left: -2px;
+    @include border-top-left-radius(2px);
+    @include border-top-right-radius(2px);
+	}
+	span {
+		border: 1px solid $color_japanese_laurel_approx;
+    @include border-radius(30px);
+		font-size: 10px;
+		color: $color_japanese_laurel_approx;
+		padding: 3px;
+	}
+}
+.heading {
+	.process-progress {
+		display: inline-block;
+		position: relative;
+		width: 100%;
+		margin: 0 auto;
+		padding-left: 40px;
+		span {
+			position: absolute;
+		}
+	}
+	.unit {
+		left: 50%;
+	}
+	.functional {
+		right: 0;
+	}
+	.header-status {
+		padding-left: 5%;
+	}
+}
+.glyphicon-option-warning:after {
+	content: "!";
+	display: inline-block;
+	font-weight: bold;
+	font-size: 20px;
+	top: -5px;
+	position: relative;
+}
+.collapsed .status {
+	height: auto;
+	background: none;
+	position: static;
+	font-size: 12px;
+	border: 0;
+	.caption {
+		display: none;
+	}
+	br {
+		display: none;
+	}
+	.glyphicon {
+		margin-top: 0;
+	}
+}
+.failed .status {
+	color: $color_mandy_approx;
+}
+.running .status {
+	color: $color_curious_blue_approx;
+}
+.passed .status {
+	color: $color_mountain_meadow_approx;
+}
+.pending .status {
+	color: $color_sandy_brown_approx;
+}
+.check.glyphicon {
+	color: $white;
+	font-size: 10px;
+  @include border-radius(0);
+  padding: 2px;
+	&.failed {
+		background-color: $color_mandy_approx;
+	}
+	&.passed {
+		background-color: $color_mountain_meadow_approx;
+	}
+	&.pending {
+		background-color: $color_sandy_brown_approx;
+	}
+	&.running {
+		background-color: $color_curious_blue_approx;
+	}
+	&.false {
+		background-color: $color_mandy_approx;
+	}
+}
+
+.build-detail {
+  .right-arrow {
+    text-align: right;
+    top: 8px;
+  }
+  .build-label {
+    text-transform: capitalize;
+  }
+
+  &.failed {
+    color: $color_mandy_approx;
+    .glyphicon {
+        @include border-radius(100%);
+    }
+  }
+  &.passed {
+    color: $color_mountain_meadow_approx;
+  }
+  &.pending {
+    color: $color_sandy_brown_approx;
+  }
+  &.running {
+    color: $color_curious_blue_approx;
+  }
+}
+
+.chart-legends {
+  & > div {
+    position: relative;
+    padding-left: 2px;
+    span {
+      display: inline-block;
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      left: -8px;
+      top: 6px;
+    }
+  }
+  .legend-failure span{
+    background-color: #f7ab59;
+  }
+  .legend-success span{
+    background-color: #1bb392;
+  }
+  .time {
+    .glyphicon {
+      width: 54px;
+      left: 0;
+    }
+    .glyphicon-time:before {
+      margin-right: -10px;
+    }
+  }
+}
+
+.glyphicon-chevron-right,
+.time {
+  color: $theme-copy-color;
+}
+.time {
+  text-transform: lowercase;
+  font-size: 12px;
+}
+
+.timestamp {
+  text-transform: lowercase;
+  font-size: 13px;
+}
+
+.glyphicon-minus:before {
+  border: 1px solid #eb5463;
+  border-radius: 100%;
+  padding: 0 1px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #fff;
+  background: #eb5463;
+}
+
+.chart-legends {
+  position: absolute;
+  right: 14%;
+  top: 0;
+}
+
+.run-details {
+  & + .chart {
+    position: absolute;
+    right: 32%;
+    top: 0;
+  }
+
+  .glyphicon-minus {
+    margin-left: 5px;
+  }
+  b {
+    font-size: 20px;
+    font-weight: 400;
+
+    &.percentage {
+      margin-right: 5px;
+    }
+
+    &.text {
+      color: #eb5463;
+      font-size: 18px;
+    }
+  }
+}
+
+.right-arrow {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
