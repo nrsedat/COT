@@ -8,7 +8,7 @@ gulp.task('style', function () {
   gulp.src('./src/*.scss')
     .pipe(compass({
       css: 'build/css',
-      sass: 'src/assets/sass',
+      sass: 'src/app/sass',
       image: 'src/assets/images'
     }))
     .pipe(minifyCSS())
